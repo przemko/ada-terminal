@@ -2,10 +2,9 @@ with Ada.Text_IO; use Ada.Text_IO;
 
 package body Terminal is
    
-   procedure Clear_Screen is
-   begin
-      Put (ASCII.ESC & "[2J");
-   end Clear_Screen;
+   -----------------------------
+   --     Obsługa kolorów     --
+   -----------------------------
    
    procedure Reset_Color is
    begin
@@ -15,7 +14,7 @@ package body Terminal is
    procedure Set_Color (Color : Color_Type; Intensity : Intensity_Type) is
    begin
       case Intensity is
-	 when Normal .. Dark =>
+	 when Normal  =>
 	    case Color is
 	       when Black =>
 		  Put (ASCII.ESC & "[30m");
@@ -34,7 +33,7 @@ package body Terminal is
 	       when White =>
 		  Put (ASCII.ESC & "[37m");
 	    end case;
-	 when Bright .. Light =>
+	 when Bright =>
 	    case Color is
 	       when Black =>
 		  Put (ASCII.ESC & "[30;1m");
@@ -64,7 +63,7 @@ package body Terminal is
    procedure Set_Background (Color : Color_Type; Intensity : Intensity_Type) is
    begin
       case Intensity is
-	 when Normal .. Dark =>
+	 when Normal =>
 	    case Color is
 	       when Black =>
 		  Put (ASCII.ESC & "[40m");
@@ -83,7 +82,7 @@ package body Terminal is
 	       when White =>
 		  Put (ASCII.ESC & "[47m");
 	    end case;
-	 when Bright .. Light =>
+	 when Bright =>
 	    case Color is
 	       when Black =>
 		  Put (ASCII.ESC & "[100m");
@@ -175,6 +174,15 @@ package body Terminal is
       Put (ASCII.ESC & "[28m");
    end Reset_Hidden;
    
+   -------------------------------------
+   --     Przemieszczanie kursora     --
+   -------------------------------------
+   
+   procedure Clear_Screen is
+   begin
+      Put (ASCII.ESC & "[2J");
+   end Clear_Screen;
+   
    procedure Move_To (Line, Column : Natural) is
       SLine : String := Natural'Image (Line);
       SColumn : String := Natural'Image (Column);
@@ -182,5 +190,44 @@ package body Terminal is
       Put (ASCII.ESC & "[" & SLine (SLine'First + 1 .. SLine'Last) & 
 	     ";" & SColumn (SColumn'First + 1 .. SColumn'Last) & "H");
    end Move_To;
+   
+   procedure Move_Up (Lines : Natural) is
+      SLines : String := Natural'Image (Lines);
+   begin
+      Put (ASCII.ESC & "[" & SLines (SLines'First + 1 .. SLines'Last) & "A");
+   end Move_Up;
+   
+   procedure Move_Down (Lines : Natural) is
+      SLines : String := Natural'Image (Lines);
+   begin
+      Put (ASCII.ESC & "[" & SLines (SLines'First + 1 .. SLines'Last) & "B");
+   end Move_Down;
+   
+   procedure Move_Forward (Columns : Natural) is
+      SColumns : String := Natural'Image (Columns);
+   begin
+      Put (ASCII.ESC & "[" & SColumns (SColumns'First + 1 .. SColumns'Last) & "C");
+   end Move_Forward;
+   
+   procedure Move_Backward (Columns : Natural) is
+      SColumns : String := Natural'Image (Columns);
+   begin
+      Put (ASCII.ESC & "[" & SColumns (SColumns'First + 1 .. SColumns'Last) & "D");
+   end Move_Backward;
+   
+   procedure Erase_To_EOL is
+   begin
+      Put (ASCII.ESC & "[K");
+   end Erase_To_EOL;
+   
+   procedure Save_Position is
+   begin
+      Put (ASCII.ESC & "[s");
+   end Save_Position;
+   
+   procedure Restore_Position is
+   begin
+      Put (ASCII.ESC & "[u");
+   end Restore_Position;
    
 end Terminal;
