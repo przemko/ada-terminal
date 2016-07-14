@@ -15,7 +15,7 @@ package body Terminal is
    procedure Set_Color (Color : Color_Type; Intensity : Intensity_Type) is
    begin
       case Intensity is
-	 when Normal =>
+	 when Normal .. Dark =>
 	    case Color is
 	       when Black =>
 		  Put (ASCII.ESC & "[30m");
@@ -34,7 +34,7 @@ package body Terminal is
 	       when White =>
 		  Put (ASCII.ESC & "[37m");
 	    end case;
-	 when Bright =>
+	 when Bright .. Light =>
 	    case Color is
 	       when Black =>
 		  Put (ASCII.ESC & "[30;1m");
@@ -64,7 +64,7 @@ package body Terminal is
    procedure Set_Background (Color : Color_Type; Intensity : Intensity_Type) is
    begin
       case Intensity is
-	 when Normal =>
+	 when Normal .. Dark =>
 	    case Color is
 	       when Black =>
 		  Put (ASCII.ESC & "[40m");
@@ -83,7 +83,7 @@ package body Terminal is
 	       when White =>
 		  Put (ASCII.ESC & "[47m");
 	    end case;
-	 when Bright =>
+	 when Bright .. Light =>
 	    case Color is
 	       when Black =>
 		  Put (ASCII.ESC & "[100m");

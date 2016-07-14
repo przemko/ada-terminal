@@ -1,6 +1,6 @@
 package Terminal is
    
-   type Intensity_Type is (Normal, Bright);
+   type Intensity_Type is (Normal, Dark, Bright, Light);
    
    type Color_Type is (Black, Red, Green, Yellow, Blue, Magenta, Cyan, White);
    
