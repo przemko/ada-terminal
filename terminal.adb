@@ -188,6 +188,16 @@ package body Terminal is
       Put (ASCII.ESC & "[2J");
    end Clear_Screen;
    
+   procedure Clear_To_EOS is
+   begin
+      Put (ASCII.ESC & "[0J");
+   end Clear_To_EOS;
+   
+   procedure Clear_To_BOS is
+   begin
+      Put (ASCII.ESC & "[1J");
+   end Clear_To_BOS;
+   
    procedure Move_To (Line, Column : Natural) is
       SLine : String := Natural'Image (Line);
       SColumn : String := Natural'Image (Column);

@@ -26,6 +26,8 @@ package Terminal is
    procedure Reset_Hidden;
    
    procedure Clear_Screen;
+   procedure Clear_To_EOS;
+   procedure Clear_To_BOS;
    procedure Move_To (Line, Column : Natural);
    procedure Move_Up (Lines : Natural);
    procedure Move_Down (Lines : Natural);

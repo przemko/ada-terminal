@@ -10,6 +10,8 @@ begin
    Move_To (5, 15);
    Put ("_ tu jest (5, 15)");
    Move_To (2, 2);
+   delay 3.0;
+   Clear_To_EOS;
    Set_Color (White, Bright);
    Put ("Odliczanie: ");
    Set_Color (Green, Bright);
