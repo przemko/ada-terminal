@@ -7,12 +7,13 @@ begin
    Clear_Screen;
    Move_To (10, 10);
    Put ("_ tu jest (10, 10)");
-   Move_To (5, 15);
-   Put ("_ tu jest (5, 15)");
+   Move_To (1, 1);
+   Put ("_ tu jest (1, 1)");
    Move_To (2, 2);
    delay 3.0;
    Clear_To_EOS;
    Set_Color (White, Bright);
+   Hide_Cursor;
    Put ("Odliczanie: ");
    Set_Color (Green, Bright);
    for I in reverse 0 .. 10 loop
@@ -28,5 +29,6 @@ begin
    end loop;
    Set_Color (White, Bright);
    Put ("BUM!!!");
+   Show_Cursor;
    Reset_Color;
 end Cursor;

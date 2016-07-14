@@ -28,13 +28,26 @@ package Terminal is
    procedure Clear_Screen;
    procedure Clear_To_EOS;
    procedure Clear_To_BOS;
-   procedure Move_To (Line, Column : Natural);
-   procedure Move_Up (Lines : Natural);
-   procedure Move_Down (Lines : Natural);
-   procedure Move_Forward (Columns : Natural);
-   procedure Move_Backward (Columns : Natural);
-   procedure Erase_To_EOL;
+   procedure Clear_Line;
+   procedure Clear_To_EOL;
+   procedure Clear_To_BOL;
+   procedure Move_To (Line, Column : Positive);
+   procedure Move_Up (Lines : Positive);
+   procedure Move_Up;
+   procedure Move_Down (Lines : Positive);
+   procedure Move_Down;
+   procedure Move_Forward (Columns : Positive);
+   procedure Move_Forward;
+   procedure Move_Backward (Columns : Positive);
+   procedure Move_Backward;
    procedure Save_Position;
    procedure Restore_Position;
+   procedure Scroll_Up (Lines : Positive);
+   procedure Scroll_Up;
+   procedure Scroll_Down (Lines : Positive);
+   procedure Scroll_Down;
+   
+   procedure Hide_Cursor;
+   procedure Show_Cursor;
    
 end Terminal;

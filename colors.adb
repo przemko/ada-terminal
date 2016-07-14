@@ -5,6 +5,7 @@ with Terminal; use Terminal;
 procedure Colors is 
 begin
    Clear_Screen;
+   Move_To (1, 1);
    Set_Color (Black, Normal); 
    Put ("normal black ");
    Set_Color (Red, Normal);

@@ -198,36 +198,71 @@ package body Terminal is
       Put (ASCII.ESC & "[1J");
    end Clear_To_BOS;
    
-   procedure Move_To (Line, Column : Natural) is
-      SLine : String := Natural'Image (Line);
-      SColumn : String := Natural'Image (Column);
+   procedure Clear_To_EOL is
+   begin
+      Put (ASCII.ESC & "[0K");
+   end Clear_To_EOL;
+   
+   procedure Clear_To_BOL is
+   begin
+      Put (ASCII.ESC & "[1K");
+   end Clear_To_BOL;
+   
+   procedure Clear_Line is
+   begin
+      Put (ASCII.ESC & "[2K");
+   end Clear_Line;
+
+   procedure Move_To (Line, Column : Positive) is
+      SLine : String := Positive'Image (Line);
+      SColumn : String := Positive'Image (Column);
    begin
       Put (ASCII.ESC & "[" & SLine (SLine'First + 1 .. SLine'Last) & 
 	     ";" & SColumn (SColumn'First + 1 .. SColumn'Last) & "H");
    end Move_To;
    
-   procedure Move_Up (Lines : Natural) is
-      SLines : String := Natural'Image (Lines);
+   procedure Move_Up (Lines : Positive) is
+      SLines : String := Positive'Image (Lines);
    begin
       Put (ASCII.ESC & "[" & SLines (SLines'First + 1 .. SLines'Last) & "A");
    end Move_Up;
    
-   procedure Move_Down (Lines : Natural) is
-      SLines : String := Natural'Image (Lines);
+   procedure Move_Up is
+   begin
+      Put (ASCII.ESC & "[A");
+   end Move_Up;
+   
+   procedure Move_Down (Lines : Positive) is
+      SLines : String := Positive'Image (Lines);
    begin
       Put (ASCII.ESC & "[" & SLines (SLines'First + 1 .. SLines'Last) & "B");
    end Move_Down;
    
-   procedure Move_Forward (Columns : Natural) is
-      SColumns : String := Natural'Image (Columns);
+   procedure Move_Down is
+   begin
+      Put (ASCII.ESC & "[B");
+   end Move_Down;
+   
+   procedure Move_Forward (Columns : Positive) is
+      SColumns : String := Positive'Image (Columns);
    begin
       Put (ASCII.ESC & "[" & SColumns (SColumns'First + 1 .. SColumns'Last) & "C");
    end Move_Forward;
    
-   procedure Move_Backward (Columns : Natural) is
-      SColumns : String := Natural'Image (Columns);
+   procedure Move_Forward is
+   begin
+      Put (ASCII.ESC & "[C");
+   end Move_Forward;
+   
+   procedure Move_Backward (Columns : Positive) is
+      SColumns : String := Positive'Image (Columns);
    begin
       Put (ASCII.ESC & "[" & SColumns (SColumns'First + 1 .. SColumns'Last) & "D");
+   end Move_Backward;
+   
+   procedure Move_Backward is
+   begin
+      Put (ASCII.ESC & "[D");
    end Move_Backward;
    
    procedure Erase_To_EOL is
@@ -244,5 +279,37 @@ package body Terminal is
    begin
       Put (ASCII.ESC & "[u");
    end Restore_Position;
+   
+   procedure Scroll_Up (Lines : Positive) is
+      SLines : String := Positive'Image (Lines);
+   begin
+      Put (ASCII.ESC & "[" & SLines (SLines'First + 1 .. SLines'Last) & "S");
+   end Scroll_Up;
+   
+   procedure Scroll_Up is
+   begin
+      Put (ASCII.ESC & "[S");
+   end Scroll_Up;
+   
+   procedure Scroll_Down (Lines : Positive) is
+      SLines : String := Positive'Image (Lines);
+   begin
+      Put (ASCII.ESC & "[" & SLines (SLines'First + 1 .. SLines'Last) & "T");
+   end Scroll_Down;
+   
+   procedure Scroll_Down is
+   begin
+      Put (ASCII.ESC & "[T");
+   end Scroll_Down;
+   
+   procedure Hide_Cursor is
+   begin
+      Put (ASCII.ESC & "[?25l");
+   end Hide_Cursor;
+   
+   procedure Show_Cursor is
+   begin
+      Put (ASCII.ESC & "[?25h");
+   end Show_Cursor;
    
 end Terminal;
