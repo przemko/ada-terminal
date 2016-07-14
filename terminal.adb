@@ -2,6 +2,11 @@ with Ada.Text_IO; use Ada.Text_IO;
 
 package body Terminal is
    
+   procedure Bell is
+   begin
+      Put (ASCII.BEL);
+   end Bell;
+   
    -----------------------------
    --     Obsługa kolorów     --
    -----------------------------

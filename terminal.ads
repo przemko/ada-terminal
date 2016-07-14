@@ -4,7 +4,8 @@ package Terminal is
    
    type Color_Type is (Black, Red, Green, Yellow, Blue, Magenta, Cyan, White);
    
-   procedure Clear_Screen;
+   procedure Bell;
+   
    procedure Reset_Color;
    procedure Set_Color (Color : Color_Type; Intensity : Intensity_Type);
    procedure Set_Color (Color : Color_Type);
@@ -23,6 +24,8 @@ package Terminal is
    procedure Reset_Blink;
    procedure Reset_Reverse;
    procedure Reset_Hidden;
+   
+   procedure Clear_Screen;
    procedure Move_To (Line, Column : Natural);
    procedure Move_Up (Lines : Natural);
    procedure Move_Down (Lines : Natural);

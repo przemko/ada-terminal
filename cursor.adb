@@ -20,6 +20,7 @@ begin
       elsif I < 8 then
 	 Set_Color (Yellow, Bright);
       end if;
+      Bell;
       Put (Integer'Image (I) & " ");
       Restore_Position;
       delay 1.0;
