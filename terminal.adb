@@ -175,4 +175,12 @@ package body Terminal is
       Put (ASCII.ESC & "[28m");
    end Reset_Hidden;
    
+   procedure Move_To (Line, Column : Natural) is
+      SLine : String := Natural'Image (Line);
+      SColumn : String := Natural'Image (Column);
+   begin
+      Put (ASCII.ESC & "[" & SLine (SLine'First + 1 .. SLine'Last) & 
+	     ";" & SColumn (SColumn'First + 1 .. SColumn'Last) & "H");
+   end Move_To;
+   
 end Terminal;

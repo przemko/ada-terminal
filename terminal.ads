@@ -23,5 +23,6 @@ package Terminal is
    procedure Reset_Blink;
    procedure Reset_Reverse;
    procedure Reset_Hidden;
+   procedure Move_To (Line, Column : Natural);
    
 end Terminal;
