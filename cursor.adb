@@ -14,13 +14,13 @@ begin
    Put ("Odliczanie: ");
    Set_Color (Green, Bright);
    for I in reverse 0 .. 10 loop
+      Bell;
       Save_Position;
       if I < 4 then 
 	 Set_Color (Red, Bright);
       elsif I < 8 then
 	 Set_Color (Yellow, Bright);
       end if;
-      Bell;
       Put (Integer'Image (I) & " ");
       Restore_Position;
       delay 1.0;
