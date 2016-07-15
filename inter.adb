@@ -7,9 +7,11 @@ procedure Inter is
   I : Integer;
 
 begin
-  Clear_Screen;
-  Get_Integer (10, 10, 8, I);
-  New_Line;
-  Put_Line ("wczytano: " & Integer'Image (I));
+   Clear_Screen;
+   Move_To (10, 10);
+   Put ("Podaj liczbę całkowitą: ");
+   Get_Integer (8, I);
+   New_Line;
+   Put_Line ("wczytano: " & Integer'Image (I));
 end Inter;
 
