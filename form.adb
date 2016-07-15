@@ -17,9 +17,8 @@ package body Form is
       Ch : Character;
    begin
       Show_Cursor;
-      Save_Position;
       Put (Str);
-      Restore_Position;
+      Move_Backward (Width);
       loop
 	 Get_Immediate (Ch);
 	 case Ch is
@@ -33,8 +32,16 @@ package body Form is
 	       else
 		  Move_Backward;
 	       end if;
+	    when ASCII.DEL =>
+	       if Position > 1 then
+		  Move_Backward;
+		  Put (" ");
+		  Move_Backward;
+		  Str (Position - 1 .. Width) := Str (Position .. Width) & " ";
+		  Position := Position - 1;
+	       end if;
 	    when others =>
-	       Move_Backward;
+	       null;
 	 end case;
       end loop;
       Value := Integer'Value (Str);
