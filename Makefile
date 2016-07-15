@@ -1,4 +1,4 @@
-all: colors cursor
+all: colors cursor inter
 
 colors: colors.adb terminal.ads terminal.adb
 	gnatmake colors.adb
@@ -6,6 +6,9 @@ colors: colors.adb terminal.ads terminal.adb
 cursor: cursor.adb terminal.ads terminal.adb
 	gnatmake cursor.adb
 
+inter: inter.adb form.ads form.ads terminal.ads terminal.adb
+	gnatmake inter.adb
+
 clean:
-	rm -f colors cursor *.o *.ali *~
+	rm -f colors cursor interface *.o *.ali *~
 
