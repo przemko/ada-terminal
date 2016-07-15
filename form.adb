@@ -17,7 +17,10 @@ package body Form is
       Ch : Character;
    begin
       Show_Cursor;
-      Put (Str);
+      Put ('0');
+      for I in 1 .. Width - 1 loop
+	 Put ('_');
+      end loop;
       Move_Backward (Width);
       loop
 	 Get_Immediate (Ch);
@@ -25,17 +28,19 @@ package body Form is
 	    when ASCII.LF =>
 	       exit;
 	    when '0' .. '9' | '+' | '-' =>
-	       Str (Position) := Ch;
-	       Put (Ch);
-	       if Position < Width then
-		  Position := Position + 1;
-	       else
-		  Move_Backward;
+	       if Ch in '0' .. '9' or else Position = 1 then
+		  Str (Position) := Ch;
+		  Put (Ch);
+		  if Position < Width then
+		     Position := Position + 1;
+		  else
+		     Move_Backward;
+		  end if;
 	       end if;
 	    when ASCII.DEL =>
 	       if Position > 1 then
 		  Move_Backward;
-		  Put (" ");
+		  Put ("_");
 		  Move_Backward;
 		  Str (Position - 1 .. Width) := Str (Position .. Width) & " ";
 		  Position := Position - 1;
