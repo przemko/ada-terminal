@@ -10,5 +10,5 @@ inter: inter.adb form.ads form.ads terminal.ads terminal.adb
 	gnatmake inter.adb
 
 clean:
-	rm -f colors cursor interface *.o *.ali *~
+	rm -f colors cursor inter *.o *.ali *~
 
