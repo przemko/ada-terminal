@@ -6,7 +6,7 @@ colors: colors.adb terminal.ads terminal.adb
 cursor: cursor.adb terminal.ads terminal.adb
 	gnatmake cursor.adb
 
-inter: inter.adb form.ads form.ads terminal.ads terminal.adb
+inter: inter.adb form.ads form.adb terminal.ads terminal.adb
 	gnatmake inter.adb
 
 clean:
