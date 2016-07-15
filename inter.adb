@@ -9,7 +9,7 @@ procedure Inter is
 begin
    Clear_Screen;
    Move_To (10, 10);
-   Put ("Podaj liczbę całkowitą: ");
+   Put ("Podaj liczbę naturalną: ");
    Get_Natural (8, I);
    New_Line;
    Put_Line ("wczytano: " & Natural'Image (I));
