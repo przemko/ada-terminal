@@ -1,3 +1,3 @@
 # ada-terminal
 
-![alt tag](http://github.com/przemmko/ada-terminal/screen.png)
+![zrzut ekranu](screen.png "Przykładowe użycie formularza") 
