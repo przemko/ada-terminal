@@ -1,14 +1,14 @@
-all: colors cursor test_form
+all: test_colors test_cursor test_form
 
-colors: colors.adb terminal.ads terminal.adb
-	gnatmake colors.adb
+test_colors: test_colors.adb terminal.ads terminal.adb
+	gnatmake test_colors.adb
 
-cursor: cursor.adb terminal.ads terminal.adb
-	gnatmake cursor.adb
+test_cursor: test_cursor.adb terminal.ads terminal.adb
+	gnatmake test_cursor.adb
 
 test_form: test_form.adb form.ads form.adb terminal.ads terminal.adb
 	gnatmake test_form.adb
 
 clean:
-	rm -f colors cursor test_form *.o *.ali *~
+	rm -f test_colors test_cursor test_form *.o *.ali *~
 
