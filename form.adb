@@ -26,7 +26,9 @@ package body Form is
          case Ch is
             when ASCII.LF =>
                -- koniec wczytywania liczby
-               exit;
+               if Position > 2 or Str (1) not in '+' | '-' then
+                  exit;
+               end if;
             when '0' .. '9' | '+' | '-' =>
                -- kolejna cyfra lub znak (+/-)
                if Position < Width and
@@ -74,7 +76,9 @@ package body Form is
          case Ch is
             when ASCII.LF =>
                -- koniec wpisywania liczby
-               exit;
+               if Position > 1 then
+                  exit;
+               end if;
             when '0' .. '9' =>
                -- kolejna cyfra
                if Position < Width then
