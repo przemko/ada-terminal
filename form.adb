@@ -5,6 +5,53 @@ with Terminal; use Terminal;
 
 package body Form is
 
+   procedure Get_Unbounded_String (Line, Column, Width : Positive;
+                                   Value : out Unbounded_String) is
+   begin
+      Move_To (Line, Column);
+      Get_Unbounded_String (Width, Value);
+   end Get_Unbounded_String;
+
+   procedure Get_Unbounded_String (Width : Positive;
+                                   Value : out Unbounded_String) is
+      Str : String (1 .. Width) := (others => ' ');
+      Position : Integer := 1;
+      Ch : Character;
+   begin
+      Show_Cursor;
+      for I in 1 .. Width  loop
+         Put ('_');
+      end loop;
+      Move_Backward (Width);
+      loop
+         Get_Immediate (Ch);
+         case Ch is
+            when ASCII.LF =>
+               -- koniec wpisywania łańcucha
+                  exit;
+            when ' ' .. '~' =>
+               -- kolejny znak
+               if Position < Width then
+                  Str (Position) := Ch;
+                  Put (Ch);
+                  Position := Position + 1;
+               end if;
+            when ASCII.DEL =>
+               -- kasowanie ostatniego znaku
+               if Position > 1 then
+                  Move_Backward;
+                  Put ("_");
+                  Move_Backward;
+                  Str (Position - 1 .. Width) := Str (Position .. Width) & " ";
+                  Position := Position - 1;
+               end if;
+            when others =>
+               null;
+         end case;
+      end loop;
+      Value := To_Unbounded_String (Str (1 .. Position - 1));
+   end Get_Unbounded_String;
+
    procedure Get_Integer (Line, Column, Width : Positive;
                           Value : out Integer) is
    begin
