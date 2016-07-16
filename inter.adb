@@ -4,14 +4,14 @@ with Form; use Form;
 
 procedure Inter is
 
-  I : Natural;
+  I : Integer;
 
 begin
    Clear_Screen;
    Move_To (10, 10);
-   Put ("Podaj liczbę naturalną: ");
-   Get_Natural (8, I);
+   Put ("Podaj liczbę całkowitą: ");
+   Get_Integer (8, I);
    New_Line;
-   Put_Line ("wczytano: " & Natural'Image (I));
+   Put_Line ("wczytano: " & Integer'Image (I));
 end Inter;
 

@@ -25,18 +25,18 @@ package body Form is
          Get_Immediate (Ch);
          case Ch is
             when ASCII.LF =>
+               -- koniec wczytywania liczby
                exit;
             when '0' .. '9' | '+' | '-' =>
-               if Ch in '0' .. '9' or else Position = 1 then
+               -- kolejna cyfra lub znak (+/-)
+               if Position < Width and
+                 (Ch in '0' .. '9' or  Position = 1) then
                   Str (Position) := Ch;
                   Put (Ch);
-                  if Position < Width then
-                     Position := Position + 1;
-                  else
-                     Move_Backward;
-                  end if;
+                  Position := Position + 1;
                end if;
             when ASCII.DEL =>
+               -- kasowanie ostatniej cyfry lub znaku (+/-)
                if Position > 1 then
                   Move_Backward;
                   Put ("_");
@@ -73,16 +73,17 @@ package body Form is
          Get_Immediate (Ch);
          case Ch is
             when ASCII.LF =>
+               -- koniec wpisywania liczby
                exit;
             when '0' .. '9' =>
-               Str (Position) := Ch;
-               Put (Ch);
+               -- kolejna cyfra
                if Position < Width then
+                  Str (Position) := Ch;
+                  Put (Ch);
                   Position := Position + 1;
-               else
-                  Move_Backward;
                end if;
             when ASCII.DEL =>
+               -- kasowanie ostatniej cyfry
                if Position > 1 then
                   Move_Backward;
                   Put ("_");

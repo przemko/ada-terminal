@@ -1,7 +1,1 @@
-form.adb
-	Get_Integer
-		Poprawić obsługę liczb o długości równej szerokości pola.
-
-	Get_Natural
-		Poprawić obsługę liczb o długości równej szerokości pola.
 
