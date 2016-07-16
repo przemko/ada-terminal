@@ -5,8 +5,8 @@
 
 #### Definiowane typy
 
-- Intensity_Type
-- Color_Type
+- _Color_Type_ definiuje dostępne kolory: _Black_, _Red_, _Green_, _Yellow_, _Blue_, _Magenta_, _Cyan_, _White_
+- _Intensity_Type_ definiuje dostępne intensywności kolorów: _Normal_, _Bright_
 
 #### Obsługa kolorów i trybów
 
@@ -69,8 +69,8 @@
 
 #### Definiowane typy
 
-- Options_Type
-- Selection_Type
+- _Options_Type_ definiuje opcje jako tablica nieograniczonych łańcuchów znaków
+- _Selection_Type_ definiuje wybrane opcje jako tablica wartości logicznych
 
 #### Wprowadzanie liczb
 
