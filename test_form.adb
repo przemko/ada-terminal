@@ -10,7 +10,7 @@ procedure Test_Form is
    N : Natural;
    OPT : Options_Type (1..3) := (To_Unbounded_String ("Sex"),
                                  To_Unbounded_String ("Drugs"),
-                                 To_Unbounded_String ("Rock n' roll"));
+                                 To_Unbounded_String ("Rock'n'roll"));
    S : Integer;
    SEL : Selection_Type (1..3);
 begin
