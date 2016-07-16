@@ -4,6 +4,8 @@ package Form is
 
    type Options_Type is array (Integer range <>) of Unbounded_String;
 
+   type Selection_Type is array (Integer range <>) of Boolean;
+
    procedure Get_Integer (Line, Column, Width : Positive;
                           Value : out Integer);
    procedure Get_Integer (Width : Positive;
@@ -25,5 +27,19 @@ package Form is
                                Selection : in out Integer)
      with
      Pre => Selection in Options'Range;
+
+   procedure Get_Selection (Line, Column, Width : Positive;
+                            Options : Options_Type;
+                            Selection : in out Selection_Type)
+     with
+     Pre => Selection'First = Options'First
+     and Selection'Last = Options'Last;
+
+   procedure Get_Selection (Width : Positive;
+                            Options : Options_Type;
+                            Selection : in out Selection_Type)
+     with
+     Pre => Selection'First = Options'First
+     and Selection'Last = Options'Last;
 
 end Form;

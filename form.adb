@@ -186,4 +186,74 @@ package body Form is
       end loop;
    end Get_Radio_Button;
 
+   procedure Get_Selection (Line, Column, Width : Positive;
+                            Options : Options_Type;
+                            Selection : in out Selection_Type)
+   is
+   begin
+      Move_To (Line, Column);
+      Get_Selection(Width, Options, Selection);
+   end Get_Selection;
+
+   procedure Get_Selection (Width : Positive;
+                            Options : Options_Type;
+                            Selection : in out Selection_Type)
+   is
+      Position : Integer := Selection'First;
+      Ch : Character;
+   begin
+      Hide_Cursor;
+      for I in Options'Range loop
+         if Selection (I) then
+            Put ("[X] ");
+         else
+            Put ("[ ] ");
+         end if;
+         if Length (Options (I)) > Width - 4 then
+            Put (To_String (Options (I)) (1 .. Width - 4));
+         else
+            Put (To_String (Options (I)));
+            for J in 1 .. Width - 4 - Length (Options (I)) loop
+               Put ("_");
+            end loop;
+         end if;
+         Move_Backward (Width);
+         Move_Down;
+      end loop;
+      Move_Forward;
+      Move_Up (1 + Options'Last - Position);
+      Show_Cursor;
+      loop
+         Get_Immediate (Ch);
+         case Ch is
+            when ASCII.LF =>
+               exit;
+            when ' ' =>
+               Selection (Position) := not Selection (Position);
+               if Selection (Position) then
+                  Put ("X");
+               else
+                  Put (" ");
+               end if;
+               Move_Backward;
+            when ASCII.ESC =>
+               Get_Immediate (Ch);
+               if Ch = '[' then
+                  Get_Immediate (Ch);
+                  if Ch = 'A' and Position > Options'First then
+                     Move_Up;
+                     Position := Position - 1;
+                  elsif Ch = 'B' and Position < Options'Last then
+                     Move_Down;
+                     Position := Position + 1;
+                  end if;
+               else
+                  null;
+               end if;
+            when others =>
+               null;
+         end case;
+      end loop;
+   end Get_Selection;
+
 end Form;

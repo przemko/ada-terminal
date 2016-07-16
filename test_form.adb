@@ -7,7 +7,11 @@ with Form; use Form;
 procedure Test_Form is
   I : Integer;
   N : Natural;
+  OPT : Options_Type (1..3) := (To_Unbounded_String ("Sex"),
+                                To_Unbounded_String ("Drugs"),
+                                To_Unbounded_String ("Rock n' roll"));
   S : Integer;
+  SEL : Selection_Type (1..3);
 begin
    Clear_Screen;
    Move_To (10, 10);
@@ -22,12 +26,19 @@ begin
 
    Move_To (15, 5);
    S := 3;
-   Get_Radio_Button (16, (1 => To_Unbounded_String ("Sex"),
-                          2 => To_Unbounded_String ("Drugs"),
-                          3 => To_Unbounded_String ("Rock & roll")),
-                     S);
+   Get_Radio_Button (16, OPT, S);
    Move_To (19, 1);
    Put ("wybrano S = " & Integer'Image (S));
 
+   Move_To (15, 45);
+   SEL := (False, True, False);
+   Get_Selection (16, OPT, SEL);
+   Move_To (19, 40);
+   Put ("wybrano SEL = ");
+   for I in SEL'Range loop
+      if SEL (I) then
+         Put (To_String (OPT (I)) & " ");
+      end if;
+   end loop;
 end Test_Form;
 
