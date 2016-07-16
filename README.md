@@ -93,3 +93,20 @@
 
 - **procedure** Get_Selection (Width : Positive; Options : Options_Type; Selection : **in out** Selection_Type)
 - **procedure** Get_Selection (Line, Column, Width : Positive; Options : Options_Type; Selection : **in out** Selection_Type) 
+
+### Kompilacja i uruchamianie przykładów
+
+``` 
+$ gnatmake test_colors.adb
+$ ./test_colors
+```
+
+``` 
+$ gnatmake test_cursor.adb
+$ ./test_cursor
+```
+
+``` 
+$ gnatmake test_form.adb
+$ ./test_form
+```
