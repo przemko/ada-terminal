@@ -2,7 +2,7 @@ with Ada.Text_IO; use Ada.Text_IO;
 
 with Terminal; use Terminal;
 
-procedure Cursor is 
+procedure Test_Cursor is 
 begin
    Clear_Screen;
    Move_To (10, 10);
@@ -31,4 +31,4 @@ begin
    Put ("BUM!!!");
    Show_Cursor;
    Reset_Color;
-end Cursor;
+end Test_Cursor;

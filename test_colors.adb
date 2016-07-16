@@ -2,11 +2,11 @@ with Ada.Text_IO; use Ada.Text_IO;
 
 with Terminal; use Terminal;
 
-procedure Colors is 
+procedure Test_Colors is
 begin
    Clear_Screen;
    Move_To (1, 1);
-   Set_Color (Black, Normal); 
+   Set_Color (Black, Normal);
    Put ("normal black ");
    Set_Color (Red, Normal);
    Put ("normal red ");
@@ -42,7 +42,7 @@ begin
    Put ("bright white ");
    Reset_Color;
    New_Line;
-   
+
    Set_Color (White, Normal);
    Put_Line ("Bright background colors:");
    Set_Background (Black, Bright);
@@ -120,7 +120,7 @@ begin
    Set_Hidden;
    Put ("hidden ");
    Reset_Hidden;
-   
+
    Reset_All;
    New_Line;
-end Colors;
+end Test_Colors;
