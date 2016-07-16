@@ -5,15 +5,21 @@ with Terminal; use Terminal;
 with Form; use Form;
 
 procedure Test_Form is
-  I : Integer;
-  N : Natural;
-  OPT : Options_Type (1..3) := (To_Unbounded_String ("Sex"),
-                                To_Unbounded_String ("Drugs"),
-                                To_Unbounded_String ("Rock n' roll"));
-  S : Integer;
-  SEL : Selection_Type (1..3);
+   STR : Unbounded_String;
+   I : Integer;
+   N : Natural;
+   OPT : Options_Type (1..3) := (To_Unbounded_String ("Sex"),
+                                 To_Unbounded_String ("Drugs"),
+                                 To_Unbounded_String ("Rock n' roll"));
+   S : Integer;
+   SEL : Selection_Type (1..3);
 begin
    Clear_Screen;
+   Move_To (6, 10);
+   Put ("  Podaj łańcuch znaków: ");
+   Get_Unbounded_String (20, STR);
+   Move_To (8, 1);
+   Put ("wczytano STR = " & "'" & To_String (STR) & "'");
    Move_To (10, 10);
    Put ("Podaj liczbę całkowitą: ");
    Get_Integer (8, I);
@@ -40,5 +46,6 @@ begin
          Put (To_String (OPT (I)) & " ");
       end if;
    end loop;
+   Move_To (21, 1);
 end Test_Form;
 

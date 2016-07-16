@@ -6,13 +6,21 @@ package Form is
 
    type Selection_Type is array (Integer range <>) of Boolean;
 
+   procedure Get_Unbounded_String (Line, Column, Width : Positive;
+                                   Value : out Unbounded_String);
+
+   procedure Get_Unbounded_String (Width : Positive;
+                                   Value : out Unbounded_String);
+
    procedure Get_Integer (Line, Column, Width : Positive;
                           Value : out Integer);
+
    procedure Get_Integer (Width : Positive;
                           Value : out Integer);
 
    procedure Get_Natural (Line, Column, Width : Positive;
                           Value : out Natural);
+
    procedure Get_Natural (Width : Positive;
                           Value : out Natural);
 
