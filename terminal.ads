@@ -1,16 +1,16 @@
 package Terminal is
-   
+
    type Intensity_Type is (Normal, Bright);
-   
+
    type Color_Type is (Black, Red, Green, Yellow, Blue, Magenta, Cyan, White);
-   
+
    procedure Bell;
-   
+
    procedure Reset_Color;
-   procedure Set_Color (Color : Color_Type; Intensity : Intensity_Type);
-   procedure Set_Color (Color : Color_Type);
-   procedure Set_Background (Color : Color_Type; Intensity : Intensity_Type);
-   procedure Set_Background (Color : Color_Type);
+   procedure Set_Color (Color : Color_Type;
+                        Intensity : Intensity_Type := Normal);
+   procedure Set_Background (Color : Color_Type;
+                             Intensity : Intensity_Type := Normal);
    procedure Set_Bright;
    procedure Set_Dim;
    procedure Set_Underline;
@@ -24,7 +24,7 @@ package Terminal is
    procedure Reset_Blink;
    procedure Reset_Reverse;
    procedure Reset_Hidden;
-   
+
    procedure Clear_Screen;
    procedure Clear_To_EOS;
    procedure Clear_To_BOS;
@@ -46,8 +46,8 @@ package Terminal is
    procedure Scroll_Up;
    procedure Scroll_Down (Lines : Positive);
    procedure Scroll_Down;
-   
+
    procedure Hide_Cursor;
    procedure Show_Cursor;
-   
+
 end Terminal;
