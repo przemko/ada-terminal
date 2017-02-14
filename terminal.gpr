@@ -1,0 +1,6 @@
+project Terminal is
+
+   for Main use ("test_colors.adb", "test_cursor.adb", "test_form.adb");
+
+end Terminal;
+
