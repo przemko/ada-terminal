@@ -25,7 +25,7 @@ begin
     Set_Background (black, bright);
     DX := Integer(Random(G));
     X := X + DX;
-    if X < 1 or else X > 50 then
+    if X < 2 or else X > 50 then
       DX := -DX;
       X := X + DX;
     end if;
