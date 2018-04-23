@@ -102,53 +102,63 @@ procedure TicTacToe is
       end loop;
    end ;
    
-   function Line (Who : Player;
-		  A, B, C : Field; 
-		  I : out Integer) return Boolean is
-   begin
-      if A = Empty and then B = Field(Who) and then C = Field(Who) then
-	 I := 1;
-	 return True;
-      elsif A = Field(Who) and then B = Empty and then C = Field(Who) then
-	 I := 2; 
-	 return True;
-      elsif A = Field(Who) and then B = Field(Who) and then C = Empty then
-	 I := 3;
-	 return True;
-      else
-	 return False;
-      end if;
-   end Line;
-   
-   function One_Move (Who : Player; C : out Column; R : out Row) return Boolean 
-   is
-      I : Integer;
-   begin
-      if Line(Who, Board(1,1), Board(2,1), Board(3,1), I) then
-	 C := Column(I); R := 1;
-      elsif Line(Who, Board(1,2), Board(2,2), Board(3,2), I) then
-	 C := Column(I); R := 2;
-      elsif Line(Who, Board(1,3), Board(2,3), Board(3,3), I) then
-	 C := Column(I); R := 3;
-      elsif Line(Who, Board(1,1), Board(1,2), Board(1,3), I) then
-	 C := 1; R := Row(I);
-      elsif Line(Who, Board(2,1), Board(2,2), Board(2,3), I) then
-	 C := 2; R := Row(I);
-      elsif Line(Who, Board(3,1), Board(3,2), Board(3,3), I) then
-	 C := 3; R := Row(I);
-      elsif Line(Who, Board(1,1), Board(2,2), Board(3,3), I) then
-	 C := Column(I); R := Row(I);
-      elsif Line(Who, Board(1,3), Board(2,2), Board(3,1), I) then
-	 C := Column(I); R := Row(4 - I);
-      else
-	 return False;
-      end if;
-      return True;
-   end One_Move;
-   
    End_Of_Game : Boolean := False;
    
    procedure Best_Move (C : out Column; R : out Row) is
+      
+      function One_Move (Who : Player; 
+			 C : out Column; R : out Row) return Boolean 
+      is
+	 
+	 function Line (Who : Player;
+			A, B, C : Field; 
+			I : out Integer) return Boolean is
+	 begin
+	    if A = Empty and then 
+	      B = Field(Who) and then 
+	      C = Field(Who) then
+	       I := 1;
+	       return True;
+	    elsif A = Field(Who) and then 
+	      B = Empty and then 
+	      C = Field(Who) then
+	       I := 2; 
+	       return True;
+	    elsif A = Field(Who) and then 
+	      B = Field(Who) and then 
+	      C = Empty then
+	       I := 3;
+	       return True;
+	    else
+	       return False;
+	    end if;
+	 end Line;
+	 
+	 I : Integer;
+	 
+      begin
+	 if Line(Who, Board(1,1), Board(2,1), Board(3,1), I) then
+	    C := Column(I); R := 1;
+	 elsif Line(Who, Board(1,2), Board(2,2), Board(3,2), I) then
+	    C := Column(I); R := 2;
+	 elsif Line(Who, Board(1,3), Board(2,3), Board(3,3), I) then
+	    C := Column(I); R := 3;
+	 elsif Line(Who, Board(1,1), Board(1,2), Board(1,3), I) then
+	    C := 1; R := Row(I);
+	 elsif Line(Who, Board(2,1), Board(2,2), Board(2,3), I) then
+	    C := 2; R := Row(I);
+	 elsif Line(Who, Board(3,1), Board(3,2), Board(3,3), I) then
+	    C := 3; R := Row(I);
+	 elsif Line(Who, Board(1,1), Board(2,2), Board(3,3), I) then
+	    C := Column(I); R := Row(I);
+	 elsif Line(Who, Board(1,3), Board(2,2), Board(3,1), I) then
+	    C := Column(I); R := Row(4 - I);
+	 else
+	    return False;
+	 end if;
+	 return True;
+      end One_Move;
+      
    begin
       if One_Move(Computer, C, R) then
 	 Set_Color (Cyan);
@@ -186,8 +196,8 @@ procedure TicTacToe is
 	 C := 2; R := 3;
 	 return;
       elsif Board(3,2) = Empty then
-	   C := 3; R := 2;
-	   return;
+	 C := 3; R := 2;
+	 return;
       end if;
       Set_Color (Cyan);
       Set_Blink;
