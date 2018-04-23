@@ -146,9 +146,18 @@ procedure TicTacToe is
       return True;
    end One_Move;
    
+   End_Of_Game : Boolean := False;
+   
    procedure Best_Move (C : out Column; R : out Row) is
    begin
       if One_Move(Computer, C, R) then
+	 Set_Color (Cyan);
+	 Set_Blink;
+	 Move_To (22, 60);
+	 Put("I WON :)");
+	 Reset_Blink;
+	 Set_Color (White);
+	 End_Of_Game := True;
 	 return;
       elsif One_Move(Human, C, R) then
 	 return;
@@ -180,9 +189,15 @@ procedure TicTacToe is
 	   C := 3; R := 2;
 	   return;
       end if;
-      loop
-	 null;
-      end loop;
+      Set_Color (Cyan);
+      Set_Blink;
+      Move_To (22,60);
+      Put ("DRAW");
+      Reset_Blink;
+      Set_Color (White);
+      Move_To (24, 1);
+      Show_Cursor;
+      GNAT.OS_Lib.OS_Exit (0);
    end Best_Move;
    
    Current_Column : Column := 1;
@@ -201,6 +216,9 @@ begin
       Best_Move (Current_Column, Current_Row);
       Draw (Computer, Current_Column, Current_Row);
       Board (Current_Column, Current_Row) := Computer;
+      exit when End_Of_Game;
    end loop;
    
+   Move_To (23, 1);
+   Show_Cursor;
 end TicTacToe;
