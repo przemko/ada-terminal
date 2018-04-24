@@ -164,7 +164,7 @@ procedure TicTacToe is
 	 Set_Color (Cyan);
 	 Set_Blink;
 	 Move_To (22, 60);
-	 Put("I WON :)");
+	 Put("COMPUTER :)");
 	 Reset_Blink;
 	 Set_Color (White);
 	 End_Of_Game := True;
@@ -202,7 +202,7 @@ procedure TicTacToe is
       Set_Color (Cyan);
       Set_Blink;
       Move_To (22,60);
-      Put ("DRAW");
+      Put ("TIE");
       Reset_Blink;
       Set_Color (White);
       Move_To (24, 1);
